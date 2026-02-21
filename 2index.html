@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achadinhos AOG</title>
+    <style>
+        /* Estilos Gerais (Cores baseadas na sua logo) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #42e8e0 0%, #89f582 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header img {
+            width: 150px; /* Tamanho da sua logo */
+            margin-bottom: 10px;
+            border-radius: 50%; /* Remove se a logo não for redonda */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: #1a4a3f;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Barra de Pesquisa */
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #searchInput {
+            width: 90%;
+            max-width: 500px;
+            padding: 15px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        /* Container dos Produtos (Layout em Grade) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cartão do Produto */
+        .product-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            color: #222;
+        }
+
+        .product-number {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Botão de Compra */
+        .buy-btn {
+            display: inline-block;
+            background-color: #00bfa5; /* Verde azulado estilo botão da shopee */
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #009682;
+        }
+
+        /* Mensagem de não encontrado */
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo Achadinhos AOG">
+        <h1>ACHADINHOS AOG</h1>
+        <p>Produtos que você nem sabia que precisava</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Pesquisar por número (ex: 001) ou nome...">
+    </div>
+
+    <main class="products-grid" id="productContainer">
+        <div class="no-results" id="noResultsMsg">Nenhum produto encontrado com essa pesquisa.</div>
+        </main>
+
+    <script>
+        // === BANCO DE DADOS DOS SEUS PRODUTOS ===
+        // Adicione, edite ou remova produtos aqui.
+        const produtos = [
+            {
+                numero: "001",
+                nome: "Jogo de lençol 400 fios micropercal",
+                imagem: "https://raw.githubusercontent.com/achadinhosAOG/Achadinhos/refs/heads/main/images/lencol.png", // Substitua pelo link da foto
+                link: "https://s.shopee.com.br/5fiItNANsT" // Seu link da shopee
+            },
+            {
+                numero: "002",
+                nome: "Projetor 4K 150 polegadas",
+                imagem: "https://raw.githubusercontent.com/achadinhosAOG/Achadinhos/refs/heads/main/projetor.png",
+                link: "https://s.shopee.com.br/7pnvnRWDlU"
+            },
+            {
+                numero: "003",
+                nome: "Mesa de Cabeceira Retro",
+                imagem: "https://raw.githubusercontent.com/achadinhosAOG/Achadinhos/refs/heads/main/cabeceira.png",
+                link: "https://s.shopee.com.br/3VewgmNAp4"
+            },
+            {
+                numero: "004",
+                nome: " Kit Garrafa Térmica Vacuum Bottle Inox 500ml + 3 Xícaras Bebidas Fria ou Quente",
+                imagem: "https://raw.githubusercontent.com/achadinhosAOG/Achadinhos/refs/heads/main/canecatermica.jpg",
+                link: "https://s.shopee.com.br/70EoqayjSc"
+            }
+        ];
+
+        const container = document.getElementById('productContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResultsMsg = document.getElementById('noResultsMsg');
+
+        // Função para renderizar os produtos na tela
+        function exibirProdutos(listaDeProdutos) {
+            // Limpa os produtos atuais, mas mantém a mensagem de erro oculta
+            const cardsAntigos = container.querySelectorAll('.product-card');
+            cardsAntigos.forEach(card => card.remove());
+
+            if (listaDeProdutos.length === 0) {
+                noResultsMsg.style.display = 'block';
+            } else {
+                noResultsMsg.style.display = 'none';
+                listaDeProdutos.forEach(produto => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">${produto.nome}</h3>
+                            <span class="product-number">#${produto.numero}</span>
+                            <a href="${produto.link}" class="buy-btn" target="_blank">COMPRAR NA SHOPEE</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        // Função de pesquisa
+        searchInput.addEventListener('input', (evento) => {
+            const termoPesquisa = evento.target.value.toLowerCase().trim();
+            
+            const produtosFiltrados = produtos.filter(produto => {
+                return produto.nome.toLowerCase().includes(termoPesquisa) || 
+                       produto.numero.includes(termoPesquisa);
+            });
+
+            exibirProdutos(produtosFiltrados);
+        });
+
+        // Exibe todos os produtos ao carregar a página
+        exibirProdutos(produtos);
+    </script>
+</body>
+</html>
