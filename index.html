@@ -137,6 +137,28 @@
             font-size: 1.2em;
             display: none;
         }
+        
+                /* Botão do Instagram */
+        .instagram-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.3); /* Fundo branquinho transparente */
+            color: #1a4a3f;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .instagram-link:hover {
+            background-color: rgba(255, 255, 255, 0.6); /* Fica mais branco ao passar o mouse */
+            transform: translateY(-2px);
+        }
+
     </style>
 </head>
 <body>
@@ -145,7 +167,10 @@
         <img src="logo.png" alt="Logo Achadinhos AOG">
         <h1>ACHADINHOS AOG</h1>
         <p>Produtos que você nem sabia que precisava</p>
+        
+        <a href="https://www.instagram.com/aogachados?igsh=MW0wdGp2OWdjb2lpaQ==" target="_blank" class="instagram-link">📸 Siga nosso Instagram</a>
     </header>
+
 
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Pesquisar por número (ex: 001) ou nome...">
