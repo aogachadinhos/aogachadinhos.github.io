@@ -240,7 +240,271 @@ const produtos = [
         nome: "🚴‍♂️ Bike Spinning Profissional",
         imagem: "https://raw.githubusercontent.com/achadinhosAOG/Achadinhos/8f76025a27a04e761a4ae9c98f2b4852eed0b068/kwlhtbr-11134207-7r98o-m78dqlbrfp7087.jpg",
         link: "https://s.shopee.com.br/9pZ4iMkvDr"
-    }
+    },
+    {
+    numero: "007",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "008",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "009",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "010",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "011",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "012",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "013",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "014",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "015",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "016",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "017",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "018",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "019",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "020",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "021",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "022",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "023",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "024",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "025",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "026",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "027",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "028",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "029",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "030",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "031",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "032",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "033",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "034",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "035",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "036",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "037",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "038",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "039",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "040",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "041",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "042",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "043",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "044",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "045",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "046",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "047",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "048",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "049",
+    nome: "",
+    imagem: "",
+    link: ""
+},
+{
+    numero: "050",
+    nome: "",
+    imagem: "",
+    link: ""
+}
 ];
 
 const container = document.getElementById('productContainer');
@@ -251,11 +515,16 @@ function exibirProdutos(lista) {
     const antigos = container.querySelectorAll('.product-card');
     antigos.forEach(card => card.remove());
 
-    if (lista.length === 0) {
+    const produtosValidos = lista.filter(produto => 
+        produto.nome && produto.imagem && produto.link
+    );
+
+    if (produtosValidos.length === 0) {
         noResultsMsg.style.display = 'block';
     } else {
         noResultsMsg.style.display = 'none';
-        lista.forEach(produto => {
+
+        produtosValidos.forEach(produto => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
