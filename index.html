@@ -118,13 +118,25 @@ header p {
     outline: none;
 }
 
-/* GRID 2 COLUNAS */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
     max-width: 900px;
     margin: 0 auto;
+}
+
+/* MOBILE - até 768px */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 769px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
 /* CARD */
