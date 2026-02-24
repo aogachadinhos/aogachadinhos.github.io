@@ -1,7 +1,51 @@
-translateY(0);
-                text-shadow: 0 0 5px rgba(255,255,255,0.3);
-            }
-        }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achadinhos AOG</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #42e8e0 0%, #89f582 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header img {
+    width: 150px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    animation: brilhoLogo 5s ease-in-out infinite;
+}
+
+@keyframes brilhoLogo {
+    0% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    50% { box-shadow: 0 0 25px rgba(255,255,255,0.7); }
+    100% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+
+h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 2.5em;
+    animation: brilhoTexto 5s ease-in-out infinite;
+}
+
+@keyframes brilhoTexto {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
 
         header p {
             color: #1a4a3f;
